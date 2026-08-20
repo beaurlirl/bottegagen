@@ -1,0 +1,352 @@
+import type { MaterialDefinition } from "./types";
+
+export const MATERIALS: MaterialDefinition[] = [
+  {
+    id: "cabinet-painted-white",
+    name: "Painted White",
+    category: "cabinet",
+    description: "Quiet lacquer. Light, precise, gallery-like.",
+    thumbnail: "/materials-optimized/cabinets/painted-white/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/painted-white/color.jpg",
+      normal: "/materials-optimized/cabinets/painted-white/normal.jpg",
+      roughness: "/materials-optimized/cabinets/painted-white/roughness.jpg",
+    },
+    repeat: [2, 2],
+    properties: {
+      roughness: 0.38,
+      metalness: 0,
+      envMapIntensity: 0.7,
+      clearcoat: 0.12,
+      clearcoatRoughness: 0.4,
+    },
+    priceAdjustment: 0,
+  },
+  {
+    id: "cabinet-painted-warm-white",
+    name: "Warm White",
+    category: "cabinet",
+    description: "Soft architectural white with a faint warmth.",
+    thumbnail: "/materials-optimized/cabinets/painted-warm-white/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/painted-warm-white/color.jpg",
+      normal: "/materials-optimized/cabinets/painted-warm-white/normal.jpg",
+      roughness: "/materials-optimized/cabinets/painted-warm-white/roughness.jpg",
+    },
+    tint: "#f3ece2",
+    repeat: [2, 2],
+    properties: {
+      roughness: 0.4,
+      metalness: 0,
+      envMapIntensity: 0.65,
+      clearcoat: 0.1,
+      clearcoatRoughness: 0.45,
+    },
+    priceAdjustment: 800,
+  },
+  {
+    id: "cabinet-white-oak",
+    name: "Natural White Oak",
+    category: "cabinet",
+    description: "Open grain. Residential, warm, architectural.",
+    thumbnail: "/materials-optimized/cabinets/white-oak/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/white-oak/color.jpg",
+      normal: "/materials-optimized/cabinets/white-oak/normal.jpg",
+      roughness: "/materials-optimized/cabinets/white-oak/roughness.jpg",
+    },
+    tint: "#f0e4d2",
+    repeat: [2.4, 2.4],
+    properties: {
+      roughness: 0.52,
+      metalness: 0,
+      envMapIntensity: 0.55,
+    },
+    priceAdjustment: 3200,
+  },
+  {
+    id: "cabinet-walnut",
+    name: "Dark Walnut",
+    category: "cabinet",
+    description: "Deeper wood. Contemporary weight.",
+    thumbnail: "/materials-optimized/cabinets/walnut/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/walnut/color.jpg",
+      normal: "/materials-optimized/cabinets/walnut/normal.jpg",
+      roughness: "/materials-optimized/cabinets/walnut/roughness.jpg",
+    },
+    tint: "#c4a07a",
+    repeat: [2.2, 2.2],
+    properties: {
+      roughness: 0.48,
+      metalness: 0,
+      envMapIntensity: 0.5,
+    },
+    priceAdjustment: 4100,
+  },
+  {
+    id: "cabinet-charcoal",
+    name: "Charcoal",
+    category: "cabinet",
+    description: "Dark painted volume. Minimal hardware language.",
+    thumbnail: "/materials-optimized/cabinets/painted-charcoal/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/painted-charcoal/color.jpg",
+      normal: "/materials-optimized/cabinets/painted-charcoal/normal.jpg",
+      roughness: "/materials-optimized/cabinets/painted-charcoal/roughness.jpg",
+    },
+    repeat: [2, 2],
+    properties: {
+      roughness: 0.34,
+      metalness: 0,
+      envMapIntensity: 0.8,
+      clearcoat: 0.16,
+      clearcoatRoughness: 0.35,
+    },
+    priceAdjustment: 1800,
+  },
+  {
+    id: "stone-calacatta",
+    name: "Calacatta Stone",
+    category: "countertop",
+    description: "Statement slab. Bright body, quiet movement.",
+    thumbnail: "/materials-optimized/countertops/calacatta/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/calacatta/color.jpg",
+      normal: "/materials-optimized/countertops/calacatta/normal.jpg",
+      roughness: "/materials-optimized/countertops/calacatta/roughness.jpg",
+    },
+    repeat: [1.15, 1.15],
+    properties: {
+      roughness: 0.22,
+      metalness: 0,
+      envMapIntensity: 1.15,
+      clearcoat: 0.45,
+      clearcoatRoughness: 0.18,
+    },
+    priceAdjustment: 6400,
+  },
+  {
+    id: "stone-limestone",
+    name: "Honed Limestone",
+    category: "countertop",
+    description: "Soft, matte, restrained.",
+    thumbnail: "/materials-optimized/countertops/honed-limestone/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/honed-limestone/color.jpg",
+      normal: "/materials-optimized/countertops/honed-limestone/normal.jpg",
+      roughness: "/materials-optimized/countertops/honed-limestone/roughness.jpg",
+    },
+    repeat: [1.4, 1.4],
+    properties: {
+      roughness: 0.58,
+      metalness: 0,
+      envMapIntensity: 0.45,
+    },
+    priceAdjustment: 2800,
+  },
+  {
+    id: "stone-travertine",
+    name: "Warm Travertine",
+    category: "countertop",
+    description: "Classic stone with contemporary detailing.",
+    thumbnail: "/materials-optimized/countertops/warm-travertine/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/warm-travertine/color.jpg",
+      normal: "/materials-optimized/countertops/warm-travertine/normal.jpg",
+      roughness: "/materials-optimized/countertops/warm-travertine/roughness.jpg",
+    },
+    repeat: [1.3, 1.3],
+    properties: {
+      roughness: 0.5,
+      metalness: 0,
+      envMapIntensity: 0.5,
+    },
+    priceAdjustment: 3600,
+  },
+  {
+    id: "stone-nero",
+    name: "Nero Vein",
+    category: "countertop",
+    description: "Dark body, architectural contrast.",
+    thumbnail: "/materials-optimized/countertops/nero/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/nero/color.jpg",
+      normal: "/materials-optimized/countertops/nero/normal.jpg",
+      roughness: "/materials-optimized/countertops/nero/roughness.jpg",
+    },
+    repeat: [1.1, 1.1],
+    properties: {
+      roughness: 0.2,
+      metalness: 0,
+      envMapIntensity: 1.05,
+      clearcoat: 0.4,
+      clearcoatRoughness: 0.2,
+    },
+    priceAdjustment: 7200,
+  },
+  {
+    id: "tile-handmade-white",
+    name: "Handmade White Tile",
+    category: "backsplash",
+    description: "Irregular glaze. Quiet craft.",
+    thumbnail: "/materials-optimized/backsplash/handmade-white/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/backsplash/handmade-white/color.jpg",
+      normal: "/materials-optimized/backsplash/handmade-white/normal.jpg",
+      roughness: "/materials-optimized/backsplash/handmade-white/roughness.jpg",
+    },
+    repeat: [1.8, 1.8],
+    properties: {
+      roughness: 0.46,
+      metalness: 0,
+      envMapIntensity: 0.7,
+    },
+    priceAdjustment: 900,
+  },
+  {
+    id: "tile-warm-clay",
+    name: "Warm Clay Tile",
+    category: "backsplash",
+    description: "Earthy field tile. Residential warmth.",
+    thumbnail: "/materials-optimized/backsplash/warm-clay/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/backsplash/warm-clay/color.jpg",
+      normal: "/materials-optimized/backsplash/warm-clay/normal.jpg",
+      roughness: "/materials-optimized/backsplash/warm-clay/roughness.jpg",
+    },
+    repeat: [1.7, 1.7],
+    properties: {
+      roughness: 0.5,
+      metalness: 0,
+      envMapIntensity: 0.55,
+    },
+    priceAdjustment: 1200,
+  },
+  {
+    id: "tile-ink",
+    name: "Ink Tile",
+    category: "backsplash",
+    description: "Deep, minimal, continuous with dark cabinetry.",
+    thumbnail: "/materials-optimized/backsplash/ink/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/backsplash/ink/color.jpg",
+      normal: "/materials-optimized/backsplash/ink/normal.jpg",
+      roughness: "/materials-optimized/backsplash/ink/roughness.jpg",
+    },
+    repeat: [2, 2],
+    properties: {
+      roughness: 0.42,
+      metalness: 0,
+      envMapIntensity: 0.75,
+    },
+    priceAdjustment: 1600,
+  },
+  {
+    id: "floor-warm-oak",
+    name: "Warm Oak Plank",
+    category: "floor",
+    description: "Wide oak plank. Warm and grounding.",
+    thumbnail: "/materials-optimized/floor/color.jpg",
+    maps: {
+      color: "/materials-optimized/floor/color.jpg",
+      normal: "/materials-optimized/floor/normal.jpg",
+      roughness: "/materials-optimized/floor/roughness.jpg",
+    },
+    tint: "#d9cfc3",
+    repeat: [3.2, 3.2],
+    properties: {
+      roughness: 0.62,
+      metalness: 0,
+      envMapIntensity: 0.4,
+    },
+    priceAdjustment: 0,
+  },
+  {
+    id: "floor-walnut",
+    name: "Walnut Plank",
+    category: "floor",
+    description: "Dark wood floor, en suite with walnut cabinetry.",
+    thumbnail: "/materials-optimized/cabinets/walnut/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/cabinets/walnut/color.jpg",
+      normal: "/materials-optimized/cabinets/walnut/normal.jpg",
+      roughness: "/materials-optimized/cabinets/walnut/roughness.jpg",
+    },
+    tint: "#c4a07a",
+    repeat: [3, 3],
+    properties: {
+      roughness: 0.55,
+      metalness: 0,
+      envMapIntensity: 0.5,
+    },
+    priceAdjustment: 1800,
+  },
+  {
+    id: "floor-limestone",
+    name: "Honed Limestone",
+    category: "floor",
+    description: "Quiet stone floor. Soft and matte underfoot.",
+    thumbnail: "/materials-optimized/countertops/honed-limestone/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/honed-limestone/color.jpg",
+      normal: "/materials-optimized/countertops/honed-limestone/normal.jpg",
+      roughness: "/materials-optimized/countertops/honed-limestone/roughness.jpg",
+    },
+    repeat: [2.6, 2.6],
+    properties: {
+      roughness: 0.6,
+      metalness: 0,
+      envMapIntensity: 0.42,
+    },
+    priceAdjustment: 2600,
+  },
+  {
+    id: "floor-nero",
+    name: "Nero Stone",
+    category: "floor",
+    description: "Dark stone floor. Architectural weight.",
+    thumbnail: "/materials-optimized/countertops/nero/thumb.jpg",
+    maps: {
+      color: "/materials-optimized/countertops/nero/color.jpg",
+      normal: "/materials-optimized/countertops/nero/normal.jpg",
+      roughness: "/materials-optimized/countertops/nero/roughness.jpg",
+    },
+    repeat: [2.2, 2.2],
+    properties: {
+      roughness: 0.35,
+      metalness: 0,
+      envMapIntensity: 0.65,
+    },
+    priceAdjustment: 3400,
+  },
+];
+
+export const STATIC_ENVIRONMENT_FINISHES: Record<
+  string,
+  Pick<MaterialDefinition, "maps" | "tint" | "repeat" | "properties">
+> = {
+  MAT_WALL: {
+    maps: {
+      color: "/materials-optimized/walls/color.jpg",
+      normal: "/materials-optimized/walls/normal.jpg",
+      roughness: "/materials-optimized/walls/roughness.jpg",
+    },
+    tint: "#f4f0ea",
+    repeat: [2.5, 2.5],
+    properties: {
+      roughness: 0.78,
+      metalness: 0,
+      envMapIntensity: 0.35,
+    },
+  },
+};
+
+export function getMaterial(id: string | null) {
+  if (!id) return undefined;
+  return MATERIALS.find((material) => material.id === id);
+}
+
+export function materialsInCategory(category: MaterialDefinition["category"]) {
+  return MATERIALS.filter((material) => material.category === category);
+}
