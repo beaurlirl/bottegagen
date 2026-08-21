@@ -5,6 +5,7 @@ type OrbitLike = {
   minDistance: number;
   maxDistance: number;
   update: () => void;
+  autoRotate?: boolean;
 };
 
 export function computeKitchenFraming(root: THREE.Object3D) {
@@ -20,11 +21,11 @@ export function computeKitchenFraming(root: THREE.Object3D) {
     center.z,
   );
 
-  const distance = span * 1.75;
+  const distance = span * 2.05;
   const position = new THREE.Vector3(
-    target.x + distance * 0.82,
+    target.x + distance * 0.94,
     target.y + size.y * 0.46,
-    target.z + distance * 0.5,
+    target.z + distance * 0.3,
   );
 
   return {
@@ -55,6 +56,52 @@ export function applyKitchenFraming(
     controls.target.copy(framing.target);
     controls.minDistance = framing.minDistance;
     controls.maxDistance = framing.maxDistance;
+    controls.update();
+  }
+
+  return framing;
+}
+
+/** Straight-on, symmetric view centered on the opening — a still "elevation"
+ * shot rather than the default three-quarter angle. */
+export function computeHeadOnFraming(root: THREE.Object3D) {
+  const box = new THREE.Box3().setFromObject(root);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const span = Math.max(size.x, size.z, 1);
+
+  const target = new THREE.Vector3(
+    center.x - size.x * 0.1,
+    box.min.y + size.y * 0.38,
+    center.z,
+  );
+
+  const distance = span * 1.9;
+  const position = new THREE.Vector3(
+    target.x + distance,
+    target.y + size.y * 0.3,
+    target.z,
+  );
+
+  return { target, position };
+}
+
+export function applyHeadOnFraming(
+  camera: THREE.Camera,
+  controls: OrbitLike | null | undefined,
+  root: THREE.Object3D,
+) {
+  const framing = computeHeadOnFraming(root);
+
+  camera.position.copy(framing.position);
+  camera.lookAt(framing.target);
+  if (camera instanceof THREE.PerspectiveCamera) {
+    camera.updateProjectionMatrix();
+  }
+
+  if (controls && controls.target?.isVector3) {
+    controls.target.copy(framing.target);
+    controls.autoRotate = false;
     controls.update();
   }
 

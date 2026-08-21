@@ -21,6 +21,10 @@ type ConfiguratorState = {
   hardware: string | null;
   packageId: string | null;
   inspection: InspectionReport | null;
+  centerViewToken: number;
+  viewLocked: boolean;
+  requestCenterView: () => void;
+  clearViewLock: () => void;
   start: () => void;
   setStep: (step: number) => void;
   next: () => void;
@@ -52,6 +56,15 @@ export const useConfiguratorStore = create<ConfiguratorState>((set, get) => ({
   hardware: null,
   packageId: "natural",
   inspection: null,
+  centerViewToken: 0,
+  viewLocked: false,
+
+  requestCenterView: () =>
+    set((state) => ({
+      centerViewToken: state.centerViewToken + 1,
+      viewLocked: true,
+    })),
+  clearViewLock: () => set({ viewLocked: false }),
 
   start: () => set({ hasStarted: true, currentStep: 0 }),
   setStep: (step) =>

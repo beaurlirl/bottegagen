@@ -5,12 +5,22 @@ import { OrbitControls, useProgress } from "@react-three/drei";
 import { Suspense, useEffect } from "react";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { useConfiguratorStore } from "@/store/configuratorStore";
 import { KitchenModel } from "./KitchenModel";
 import { SceneLights } from "./SceneLights";
 
 const FALLBACK_POSITION = new THREE.Vector3(6.4, 2.35, 3.7);
 const FALLBACK_TARGET = new THREE.Vector3(0.85, 1.05, 0);
 const IDLE_ROTATE_DELAY = 4000;
+
+// The room is only open on one side; past this arc the camera grazes past
+// the side walls' outer faces (solid, since they're not meant to be seen
+// from outside), so orbiting further makes the kitchen read as blocked
+// instead of open. Free 360° rotation is still used for the passive
+// auto-rotate showcase, where it reads as a turntable spin rather than a
+// stuck viewpoint.
+const MIN_AZIMUTH = THREE.MathUtils.degToRad(65);
+const MAX_AZIMUTH = THREE.MathUtils.degToRad(125);
 
 function AutoRotateController({ active }: { active: boolean }) {
   const controls = useThree(
@@ -31,10 +41,12 @@ function AutoRotateController({ active }: { active: boolean }) {
     const stop = () => {
       clearTimeout(idleTimer);
       controls.autoRotate = false;
+      useConfiguratorStore.getState().clearViewLock();
     };
     const scheduleResume = () => {
       clearTimeout(idleTimer);
       idleTimer = setTimeout(() => {
+        if (useConfiguratorStore.getState().viewLocked) return;
         controls.autoRotate = true;
       }, IDLE_ROTATE_DELAY);
     };
@@ -61,7 +73,7 @@ export function KitchenViewer({
   return (
     <Canvas
       className="kitchen-canvas"
-      dpr={[1, 1.6]}
+      dpr={[1, 2]}
       shadows
       gl={{
         antialias: true,
@@ -94,6 +106,8 @@ export function KitchenViewer({
         maxDistance={12}
         minPolarAngle={Math.PI * 0.12}
         maxPolarAngle={Math.PI * 0.62}
+        minAzimuthAngle={showSummary ? -Infinity : MIN_AZIMUTH}
+        maxAzimuthAngle={showSummary ? Infinity : MAX_AZIMUTH}
         autoRotateSpeed={1.1}
         target={FALLBACK_TARGET}
       />

@@ -2,6 +2,7 @@
 
 import { QUESTIONS } from "@/configurator/questions";
 import { useConfiguratorStore } from "@/store/configuratorStore";
+import { CenterViewButton } from "./CenterViewButton";
 import { ConfigurationSummary } from "./ConfigurationSummary";
 import { ConfiguratorProgress } from "./ConfiguratorProgress";
 import { IntroScreen } from "./IntroScreen";
@@ -28,6 +29,9 @@ export default function ConfiguratorShell() {
         <>
           <div className="pointer-events-none absolute inset-4 border border-black/12 sm:inset-6" />
           <ConfiguratorProgress />
+          <div className="pointer-events-none absolute top-20 right-4 z-20 sm:top-24 sm:right-8">
+            <CenterViewButton />
+          </div>
           <QuestionStep />
           {reviewingIn3d ? (
             <button
