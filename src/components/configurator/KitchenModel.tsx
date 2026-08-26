@@ -36,6 +36,7 @@ export function KitchenModel() {
   const { scene } = useGLTF(model.url);
   const gl = useThree((state) => state.gl);
   const camera = useThree((state) => state.camera);
+  const size = useThree((state) => state.size);
   const controls = useThree((state) => state.controls) as OrbitControlsImpl | null;
   const setInspection = useConfiguratorStore((state) => state.setInspection);
   const cabinet = useConfiguratorStore((state) => state.cabinet);
@@ -91,9 +92,10 @@ export function KitchenModel() {
 
   useLayoutEffect(() => {
     if (framed.current) return;
-    applyKitchenFraming(camera, controls, kitchen);
+    const aspect = size.width / size.height;
+    applyKitchenFraming(camera, controls, kitchen, aspect);
     if (controls) framed.current = true;
-  }, [camera, controls, kitchen]);
+  }, [camera, controls, kitchen, size.width, size.height]);
 
   useLayoutEffect(() => {
     if (centerViewToken === centeredToken.current) return;
