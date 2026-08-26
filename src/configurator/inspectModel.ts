@@ -54,19 +54,21 @@ export function inspectKitchenScene(root: Object3D): InspectionReport {
     missingHardware: true,
   };
 
-  console.groupCollapsed("BOTTEGA kitchen.glb inspection");
-  console.table(
-    assignments.map((row) => ({
-      node: row.node,
-      mesh: row.mesh,
-      material: row.materials.join(", "),
-    })),
-  );
-  console.log("materials", report.materialNames);
-  console.log("shared material names (expected)", report.duplicatedMaterialNames);
-  console.log("unnamed", report.unnamed);
-  console.log("multi-material meshes", report.multiMaterialMeshes);
-  console.groupEnd();
+  if (process.env.NODE_ENV !== "production") {
+    console.groupCollapsed("BOTTEGA kitchen.glb inspection");
+    console.table(
+      assignments.map((row) => ({
+        node: row.node,
+        mesh: row.mesh,
+        material: row.materials.join(", "),
+      })),
+    );
+    console.log("materials", report.materialNames);
+    console.log("shared material names (expected)", report.duplicatedMaterialNames);
+    console.log("unnamed", report.unnamed);
+    console.log("multi-material meshes", report.multiMaterialMeshes);
+    console.groupEnd();
+  }
 
   return report;
 }
