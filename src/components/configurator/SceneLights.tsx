@@ -5,7 +5,7 @@ import { Environment } from "@react-three/drei";
 export function SceneLights() {
   return (
     <>
-      <Environment files="/env/studio.hdr" environmentIntensity={0.62} />
+      <Environment files="/env/studio-small.hdr" environmentIntensity={0.62} />
       <hemisphereLight args={["#f4f1ec", "#8f877d", 0.28]} />
       <directionalLight
         castShadow

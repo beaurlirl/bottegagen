@@ -26,15 +26,24 @@ function AutoRotateController({ active }: { active: boolean }) {
   const controls = useThree(
     (state) => state.controls,
   ) as OrbitControlsImpl | null;
+  const hasStarted = useConfiguratorStore((state) => state.hasStarted);
 
   useEffect(() => {
     if (!controls) return;
 
+    // Summary turntable mode: always rotate
     if (active) {
       controls.autoRotate = true;
       return;
     }
 
+    // Before user starts (intro splash): no auto-rotate, let rAF rest
+    if (!hasStarted) {
+      controls.autoRotate = false;
+      return;
+    }
+
+    // After user starts: idle-resume auto-rotate behavior
     controls.autoRotate = false;
     let idleTimer: ReturnType<typeof setTimeout>;
 
@@ -60,7 +69,7 @@ function AutoRotateController({ active }: { active: boolean }) {
       controls.removeEventListener("start", stop);
       controls.removeEventListener("end", scheduleResume);
     };
-  }, [controls, active]);
+  }, [controls, active, hasStarted]);
 
   return null;
 }

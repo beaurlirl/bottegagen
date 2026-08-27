@@ -8,7 +8,11 @@ type OrbitLike = {
   autoRotate?: boolean;
 };
 
-export function computeKitchenFraming(root: THREE.Object3D) {
+export function computeKitchenFraming(
+  root: THREE.Object3D,
+  aspect: number = 1.5,
+  fov: number = 38,
+) {
   const box = new THREE.Box3().setFromObject(root);
   const size = box.getSize(new THREE.Vector3());
   const center = box.getCenter(new THREE.Vector3());
@@ -21,7 +25,20 @@ export function computeKitchenFraming(root: THREE.Object3D) {
     center.z,
   );
 
-  const distance = span * 2.05;
+  // Base distance for landscape framing
+  let distance = span * 2.05;
+
+  // For portrait/tall viewports, we need to pull back further so the kitchen
+  // fits vertically. The vertical FOV stays constant, but with a narrow width
+  // we see less horizontal span. Compute the required distance to fit the
+  // kitchen height in view.
+  if (aspect < 1.2) {
+    const verticalFov = THREE.MathUtils.degToRad(fov);
+    const kitchenVisibleHeight = size.y * 1.15;
+    const requiredDistance = kitchenVisibleHeight / (2 * Math.tan(verticalFov / 2));
+    distance = Math.max(distance, requiredDistance * 1.1);
+  }
+
   const position = new THREE.Vector3(
     target.x + distance * 0.94,
     target.y + size.y * 0.46,
@@ -41,12 +58,17 @@ export function applyKitchenFraming(
   camera: THREE.Camera,
   controls: OrbitLike | null | undefined,
   root: THREE.Object3D,
+  aspect?: number,
 ) {
-  const framing = computeKitchenFraming(root);
+  const isPerspective = camera instanceof THREE.PerspectiveCamera;
+  const effectiveAspect = aspect ?? (isPerspective ? camera.aspect : 1.5);
+  const fov = isPerspective ? camera.fov : 38;
+
+  const framing = computeKitchenFraming(root, effectiveAspect, fov);
 
   camera.position.copy(framing.position);
   camera.lookAt(framing.target);
-  if (camera instanceof THREE.PerspectiveCamera) {
+  if (isPerspective) {
     camera.near = 0.1;
     camera.far = framing.far;
     camera.updateProjectionMatrix();

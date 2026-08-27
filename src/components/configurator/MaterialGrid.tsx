@@ -16,15 +16,17 @@ export function MaterialGrid({ category, value, onSelect }: Props) {
 
   return (
     <div>
-      <div className="flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {materials.map((material) => (
-          <MaterialOption
-            key={material.id}
-            material={material}
-            selected={material.id === value}
-            onSelect={onSelect}
-          />
-        ))}
+      <div className="-mx-1 overflow-x-auto px-1 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-max gap-3">
+          {materials.map((material) => (
+            <MaterialOption
+              key={material.id}
+              material={material}
+              selected={material.id === value}
+              onSelect={onSelect}
+            />
+          ))}
+        </div>
       </div>
       <div className="mt-3 min-h-[2.5rem] border-t border-black/10 pt-2">
         {selected ? (
